@@ -1,6 +1,6 @@
 # Marlin for Artillery Sidewinder X2
 
-The stock firmware on the Artillery Sidewinder X2 is [Marlin](https://github.com/MarlinFirmware/Marlin), however it is out of date (2.0.9.1) and missing some fairly basic features.
+The stock firmware on the Artillery Sidewinder X2 is [Marlin](https://github.com/MarlinFirmware/Marlin), however [Artillery's version](https://github.com/artillery3d/sidewinder-x2-firmware) is out of date (2.0.9.1) and missing some fairly basic features.
 
 Marlin is an open source project in active development and so with a little configuration this can be made to run on any supported printer.
 
