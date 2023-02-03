@@ -6,7 +6,12 @@ Marlin is an open source project in active development and so with a little conf
 
 In this repository you will find 2 files: [`Configuration.h`](configs/updated/Configuration.h) and [`Configuration_adv.h`](configs/updated/Configuration_adv.h) which are exactly that.
 
-Scripts to download the latest supported Marlin, apply the configuration and build the firmware to flash onto your printer are a WIP.
+There are scripts to download the latest supported Marlin, apply the configuration and build the firmware to flash onto your printer.
+
+Feel free to raise an issue if you think there are more sane defaults or find any bugs.
+
+# Disclaimer
+I offer no warranty, support or guarantees. Any changes to your 3D printer firmware and the consequences of these changes are your responsibility. If you do not understand what you are doing then I suggest you do not continue.
 
 # Lets just do this
 
