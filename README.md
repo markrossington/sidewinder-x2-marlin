@@ -6,7 +6,14 @@ Marlin is an open source project in active development and so with a little conf
 
 In this repository you will find 2 files: [`Configuration.h`](configuration/updated/Configuration.h) and [`Configuration_adv.h`](configuration/updated/Configuration_adv.h) which are exactly that.
 
-You should also find scripts to download the latest supported Marlin, apply the configuration and build the firmware to flash onto your printer.
+Scripts to download the latest supported Marlin, apply the configuration and build the firmware to flash onto your printer are a WIP.
+
+# Lets just do this
+
+ 1. Ensure you have python
+ 2. Run `python scripts\build.py`
+ 3. Go to `output` folder and find your `firmware.bin`
+
 # Summary of Differences from Stock
 
 | Feature/Difference           | Stock              | This                      | Reference Variable                               | Rationale/Notes                                                                                          |
@@ -31,7 +38,22 @@ You should also find scripts to download the latest supported Marlin, apply the 
 | Host Action Commands         | Off                | On                        | HOST_ACTION_COMMANDS                             | Allow more advanced features of octoprint at negligible cost to performance                              |
 | Cancel Objects               | Off                | On                        | CANCEL_OBJECTS                                   | Useful mid print to continue with other projects if one may have lifted or otherwise failed              |
 
-**NOTE: At the moment this is the configuration for _my_ printer. I have changed a few things from stock and so these defaults may not work for you. E.g. the thermistor type. I hope one day to make a stock configuration**
+# Notable omitted features
+
+ - **Any UI or Display options** - The Sidewinder X2 has a seperate display which communicates via UART to the Ruby Mainboard
+ - **Any USB or SD card option** - The seperate display has the SD card and USB slots and so this board handles those functions
+
+# Folder Structure
+
+* configuration
+  * updated - The configuration to use on a new Sidewinder X2
+  * stock_artillery - For reference only, to see which options are enabled on the stock firmware
+* scripts
+  * `01-install-platformio.py`
+  * `02-get-marlin.py`
+  * `03-build-marlin.py`
+  * `04-flash-marlin.py`
+
 
 # Sources/Links
 
