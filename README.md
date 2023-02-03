@@ -11,8 +11,10 @@ Scripts to download the latest supported Marlin, apply the configuration and bui
 # Lets just do this
 
  1. Ensure you have python
- 2. Run `python scripts\build.py`
- 3. Go to `output` folder and find your `firmware.bin`
+ 2. If you don't have PlatformIO installed, then run: `01-install-platformio.py`
+ 3. Run: `02-get-marlin.py` and select which version you want
+ 4. Run: `03-build-marlin.py` and compiled firmware should be in `output/firmware.bin`
+ 5. Ensure `dfu-util` installed, turn printer on and plug a USB cable into it. Run `04-flash-marlin.py`.
 
 # Summary of Differences from Stock
 
