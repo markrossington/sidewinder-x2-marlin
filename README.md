@@ -2,7 +2,7 @@
 
 The stock firmware on the Artillery Sidewinder X2 is [Marlin](https://github.com/MarlinFirmware/Marlin), however [Artillery's version](https://github.com/artillery3d/sidewinder-x2-firmware) is out of date (2.0.9.1) and missing some fairly basic features.
 
-Marlin is an open source project in active development and so with a little configuration this can be made to run on any supported printer.
+Marlin is an open source project in active development and so with a little configuration this can be made to run on any supported printer. 
 
 In this repository you will find 2 files: [`Configuration.h`](configs/updated/Configuration.h) and [`Configuration_adv.h`](configs/updated/Configuration_adv.h) which are exactly that.
 
@@ -33,7 +33,7 @@ Scripts to download the latest supported Marlin, apply the configuration and bui
 | Internal Move Buffer         | 16                 | 64                        | BLOCK_BUFFER_SIZE                                | Increase buffer size providing there is SRAM available is a good thing                                   |
 | Serial ASCII Buffer          | 4 bytes            | 32 bytes                  | BUFSIZE                                          |                                                                                                          |
 | Serial Receive Buffer        | 128 bytes          | 2048 bytes                | RX_BUFFER_SIZE                                   | This makes printing with something like octoprint much smoother and less likely to stutter               |
-| Advanced OK Command          | Off                | On                        | ADVANCED_OK                                      | Allow Marlin to respond with additional info when returnin OK                                            |
+| Advanced OK Command          | Off                | On                        | ADVANCED_OK                                      | Allow Marlin to respond with additional info when returning OK                                            |
 | M600 Filament change feature | Off                | On                        | NOZZLE_PARK_FEATURE, ADVANCED_PAUSE_FEATURE      |                                                                                                          |
 | Auto report position         | Off                | On                        | AUTO_REPORT_POSITION, M114_DETAIL, M114_REALTIME | some clients may use this                                                                                |
 | Lower Case G-Code            | Off                | On                        | GCODE_CASE_INSENSITIVE                           | Why not                                                                                                  |
@@ -42,8 +42,8 @@ Scripts to download the latest supported Marlin, apply the configuration and bui
 
 # Notable omitted features
 
- - **Any UI or Display options** - The Sidewinder X2 has a seperate display which communicates via UART to the Ruby Mainboard
- - **Any USB or SD card option** - The seperate display has the SD card and USB slots and so this board handles those functions
+ - **Any UI or Display options** - The Sidewinder X2 has a display with it's own controller which communicates via UART to the Ruby Mainboard. So Marlin doesn't drive this.
+ - **Any USB or SD card option** - The display controller also handles the SD card and USB slots so no need to configure here.
 
 # Folder Structure
 
@@ -56,9 +56,16 @@ Scripts to download the latest supported Marlin, apply the configuration and bui
   * `03-build-marlin.py`
   * `04-flash-marlin.py`
 
+# TODO:
+
+ - [ ] Add a nice way to input which marlin to download and which config to apply (ini file, command line args, command line UI)
+ - [ ] Combine scripts
+ - [ ] Neaten up and document scripts
+ - [ ] Add a way to point at a repo of custom config
 
 # Sources/Links
 
+ - The amazing Marlin project: https://github.com/MarlinFirmware/Marlin
  - Stock Binaries, if you wish to go back: https://www.artillery3d.com/pages/downloads
  - Stock source code: https://github.com/artillery3d/sidewinder-x2-firmware
  - Freakydude's Build: https://github.com/freakydude/Marlin
