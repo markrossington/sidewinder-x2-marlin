@@ -58,3 +58,6 @@ with subprocess.Popen(
             print(line)
 os.chdir(repository_root)
 
+print(f"Moving compiled firmware into output folder")
+os.makedirs("output", exist_ok=True)
+shutil.copy(output_binary_path, "output")

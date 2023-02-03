@@ -8,7 +8,7 @@ from sys import platform
 import serial
 import serial.tools.list_ports
 
-binary_to_flash = "build/Marlin-bugfix-2.1.x/.pio/build/Artillery_Ruby/firmware.bin"
+binary_to_flash = "output/firmware.bin"
 repository_root = os.path.dirname(os.path.dirname(os.path.realpath(sys.argv[0])))
 
 os.chdir(repository_root)
