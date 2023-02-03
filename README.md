@@ -15,11 +15,12 @@ I offer no warranty, support or guarantees. Any changes to your 3D printer firmw
 
 # Lets just do this
 
- 1. Ensure you have python
- 2. If you don't have PlatformIO installed, then run: `01-install-platformio.py`
- 3. Run: `02-get-marlin.py` and select which version you want
- 4. Run: `03-build-marlin.py` and compiled firmware should be in `output/firmware.bin`
- 5. Ensure `dfu-util` installed, turn printer on and plug a USB cable into it. Run `04-flash-marlin.py`.
+ 1. Clone or [download a zip](https://github.com/markrossington/sidewinder-x2-marlin/archive/refs/heads/main.zip) of this repository
+ 2. Ensure you have Python 3.x installed. [Download here](https://www.python.org/downloads/).
+ 3. If you don't have PlatformIO installed, then run: `01-install-platformio.py`
+ 4. Run: `02-get-marlin.py` and select which version you want
+ 5. Run: `03-build-marlin.py` and compiled firmware should be in `output/firmware.bin`
+ 6. Ensure `dfu-util` installed, turn printer on and plug a USB cable into it. Run `04-flash-marlin.py`.
 
 # Summary of Differences from Stock
 
