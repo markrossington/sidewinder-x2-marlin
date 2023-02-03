@@ -4,7 +4,7 @@ The stock firmware on the Artillery Sidewinder X2 is [Marlin](https://github.com
 
 Marlin is an open source project in active development and so with a little configuration this can be made to run on any supported printer.
 
-In this repository you will find 2 files: [`Configuration.h`](configuration/updated/Configuration.h) and [`Configuration_adv.h`](configuration/updated/Configuration_adv.h) which are exactly that.
+In this repository you will find 2 files: [`Configuration.h`](configs/updated/Configuration.h) and [`Configuration_adv.h`](configs/updated/Configuration_adv.h) which are exactly that.
 
 Scripts to download the latest supported Marlin, apply the configuration and build the firmware to flash onto your printer are a WIP.
 
@@ -45,7 +45,7 @@ Scripts to download the latest supported Marlin, apply the configuration and bui
 
 # Folder Structure
 
-* configuration
+* configs
   * updated - The configuration to use on a new Sidewinder X2
   * stock_artillery - For reference only, to see which options are enabled on the stock firmware
 * scripts
