@@ -15,14 +15,16 @@ I offer no warranty, support or guarantees. Any changes to your 3D printer firmw
 
 # Lets just do this
 
- 1. Clone or [download a zip](https://github.com/markrossington/sidewinder-x2-marlin/archive/refs/heads/main.zip) of this repository
- 2. Ensure you have Python 3.x installed. [Download here](https://www.python.org/downloads/).
- 3. If you don't have PlatformIO installed, then run: `01-install-platformio.py`
- 4. Run: `02-get-marlin.py` and select which version you want
- 5. Run: `03-build-marlin.py` and compiled firmware should be in `output/firmware.bin`
- 6. Ensure `dfu-util` installed, turn printer on and plug a USB cable into it. Run `04-flash-marlin.py`.
+ 1. Optional: Save your printer settings by sending `M503` command and copying the output to a file.
+ 2. Clone or [download a zip](https://github.com/markrossington/sidewinder-x2-marlin/archive/refs/heads/main.zip) of this repository
+ 3. Ensure you have Python 3.x installed. [Download here](https://www.python.org/downloads/).
+ 4. If you don't have PlatformIO installed, then run: `01-install-platformio.py`
+ 5. Run: `02-get-marlin.py` and select which version you want
+ 6. Run: `03-build-marlin.py` and compiled firmware should be in `output/firmware.bin`
+ 7. Ensure `dfu-util` installed, turn printer on and plug a USB cable into it. Run `04-flash-marlin.py`.
+ 8. Don't forget to re-calibrate settings (see `M503` command output from step 1) such as input shaping, linear advance, bed levelling mesh, extruder steps and so on. These are lost when putting a new build of Firmware on your printer.
 
-# Summary of Differences from Stock
+# Comparison of Differences from Stock
 
 | Feature/Difference           | Stock              | This                      | Reference Variable                               | Rationale/Notes                                                                                          |
 |------------------------------|--------------------|---------------------------|--------------------------------------------------|----------------------------------------------------------------------------------------------------------|
