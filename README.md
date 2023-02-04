@@ -2,11 +2,13 @@
 
 The stock firmware on the Artillery Sidewinder X2 is [Marlin](https://github.com/MarlinFirmware/Marlin), however [Artillery's version](https://github.com/artillery3d/sidewinder-x2-firmware) is out of date (2.0.9.1) and missing some fairly basic features.
 
-Marlin is an open source project in active development and so with a little configuration newer versions can be made to run on any supported printer. 
+Marlin is an open source project in active development and so with a little configuration the latest version can be made to run on any supported printer. 
 
-In this repository you will find 2 files: [`configs/updated/Configuration.h`](configs/updated/Configuration.h) and [`configs/updated/Configuration_adv.h`](configs/updated/Configuration_adv.h) which are exactly that.
+In this repository you will find configuration for use with newer versions of Marlin on the Sidewinder X2 which consists of 2 files:
+ - [`configs/updated/Configuration.h`](configs/updated/Configuration.h)
+ - [`configs/updated/Configuration_adv.h`](configs/updated/Configuration_adv.h)
 
-There are scripts to download the latest supported Marlin, apply the configuration and build the firmware to flash onto your printer.
+To save you having to manually figure out how to use these files I have written scripts to download the latest supported Marlin, apply the configuration and build the firmware to flash onto your printer.
 
 Feel free to [open an issue](https://github.com/markrossington/sidewinder-x2-marlin/issues/new) if you think there are more sane defaults or find any bugs.
 
@@ -27,7 +29,7 @@ I offer no warranty, support or guarantees. Any changes to your 3D printer firmw
 # Comparison of Differences from Stock
 
 | Feature/Difference           | Stock              | This                      | Reference Variable                               | Rationale/Notes                                                                                          |
-|------------------------------|--------------------|---------------------------|--------------------------------------------------|----------------------------------------------------------------------------------------------------------|
+| ---------------------------- | ------------------ | ------------------------- | ------------------------------------------------ | -------------------------------------------------------------------------------------------------------- |
 | Marlin Version               | 2.0.9.1            | 2.1.2 Bugfix              | N/A                                              | Less bugs, newer features, see [Marlin Releases](https://github.com/MarlinFirmware/Marlin/releases) page |
 | Heater Minimum Temperature   | 5 C                | -5 C                      | HEATER_0_MINTEMP etc                             | 5 C is a bad default because it is a reasonable ambient temperature in a garage                          |
 | Restore level after home     | Off                | On                        | ENABLE_LEVELING_AFTER_G28                        | Save having to enter `M420` to restore the mesh after home in slicer settings                            |
@@ -41,7 +43,7 @@ I offer no warranty, support or guarantees. Any changes to your 3D printer firmw
 | Internal Move Buffer         | 16                 | 64                        | BLOCK_BUFFER_SIZE                                | Increase buffer size providing there is SRAM available is a good thing                                   |
 | Serial ASCII Buffer          | 4 bytes            | 32 bytes                  | BUFSIZE                                          |                                                                                                          |
 | Serial Receive Buffer        | 128 bytes          | 2048 bytes                | RX_BUFFER_SIZE                                   | This makes printing with something like octoprint much smoother and less likely to stutter               |
-| Advanced OK Command          | Off                | On                        | ADVANCED_OK                                      | Allow Marlin to respond with additional info when returning OK                                            |
+| Advanced OK Command          | Off                | On                        | ADVANCED_OK                                      | Allow Marlin to respond with additional info when returning OK                                           |
 | M600 Filament change feature | Off                | On                        | NOZZLE_PARK_FEATURE, ADVANCED_PAUSE_FEATURE      |                                                                                                          |
 | Auto report position         | Off                | On                        | AUTO_REPORT_POSITION, M114_DETAIL, M114_REALTIME | some clients may use this                                                                                |
 | Lower Case G-Code            | Off                | On                        | GCODE_CASE_INSENSITIVE                           | Why not                                                                                                  |
