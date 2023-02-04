@@ -64,12 +64,25 @@ I offer no warranty, support or guarantees. Any changes to your 3D printer firmw
   * `03-build-marlin.py`
   * `04-flash-marlin.py`
 
+# FAQ
+
+  1. If you're going to flash a new firmware, why not just use [Klipper](https://www.klipper3d.org)?
+     * Klipper will mean learning a whole new software ecosystem. This is a valuable learning project and **one I suggest to those who seek it**. However if you just want your printer to operate in the same way, but with better features: Marlin is the way to go. 
+     * Feature wise Klipper used to be king, however the Marlin team are catching up with features such as linear advance and input shaping which are now both available. 
+     * You absolutely need an additional computer (usually a Rapsberry Pi) constantly plugged into your printer. Not a problem for most of us who use Octoprint/OctoPi but still worth noting. Using Klipper your printer will not operate without this. 
+     * The existing TFT screen will no longer work, there are great projects such as [Klipperscreen](https://klipperscreen.readthedocs.io) which will work with a screen plugged into your Raspberry Pi but this is extra hardware still. 
+  2. Why are the scripts in Python and not X, Y or Z?
+      * I wanted this to work on as many platforms as possible. Python allows for this and is often installed on many peoples machines anyway. It's worth noting that building Marlin doesn't work on a Raspberry Pi at this point in time, this is a limitation of the toolchains and nothing I can control.
+  3. Why don't you have this new amazing feature installed?
+      * I might not know about it, [open an issue](https://github.com/markrossington/sidewinder-x2-marlin/issues/new).
+
 # TODO:
 
  - [ ] Add a nice way to input which marlin to download and which config to apply (ini file, command line args, command line UI)
  - [ ] Combine scripts
  - [ ] Neaten up and document scripts
  - [ ] Add a way to point at a repo of custom config
+ - [ ] Make instructions clearer for people who don't understand command line and software
 
 # Sources/Links
 
