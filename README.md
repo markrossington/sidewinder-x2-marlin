@@ -2,13 +2,13 @@
 
 The stock firmware on the Artillery Sidewinder X2 is [Marlin](https://github.com/MarlinFirmware/Marlin), however [Artillery's version](https://github.com/artillery3d/sidewinder-x2-firmware) is out of date (2.0.9.1) and missing some fairly basic features.
 
-Marlin is an open source project in active development and so with a little configuration this can be made to run on any supported printer. 
+Marlin is an open source project in active development and so with a little configuration newer versions can be made to run on any supported printer. 
 
-In this repository you will find 2 files: [`Configuration.h`](configs/updated/Configuration.h) and [`Configuration_adv.h`](configs/updated/Configuration_adv.h) which are exactly that.
+In this repository you will find 2 files: [`configs/updated/Configuration.h`](configs/updated/Configuration.h) and [`configs/updated/Configuration_adv.h`](configs/updated/Configuration_adv.h) which are exactly that.
 
 There are scripts to download the latest supported Marlin, apply the configuration and build the firmware to flash onto your printer.
 
-Feel free to raise an issue if you think there are more sane defaults or find any bugs.
+Feel free to [open an issue](https://github.com/markrossington/sidewinder-x2-marlin/issues/new) if you think there are more sane defaults or find any bugs.
 
 # Disclaimer
 I offer no warranty, support or guarantees. Any changes to your 3D printer firmware and the consequences of these changes are your responsibility. If you do not understand what you are doing then I suggest you do not continue.
