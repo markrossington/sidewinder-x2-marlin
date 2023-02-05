@@ -8,10 +8,6 @@ import time
 import urllib.request
 import zipfile
 from distutils.spawn import find_executable
-from sys import platform
-
-import serial
-import serial.tools.list_ports
 
 
 class MarlinBuilder:
@@ -144,12 +140,7 @@ def main():
 
     if not mb.build_marlin():
         print("[Error] Marlin build failed")
-
-    # Save settings
-
-    # Flash
-
-    # Recover settings
+        return
 
 
 if __name__ == "__main__":
