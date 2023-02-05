@@ -89,6 +89,7 @@ I offer no warranty, support or guarantees. Any changes to your 3D printer firmw
 # Sources/Links
 
  - The amazing Marlin project: https://github.com/MarlinFirmware/Marlin
+ - Official Marlin config for Sidewinder X2: https://github.com/MarlinFirmware/Configurations/tree/import-2.1.x/config/examples/Artillery/Sidewinder%20X2
  - Stock Binaries, if you wish to go back: https://www.artillery3d.com/pages/downloads
  - Stock source code: https://github.com/artillery3d/sidewinder-x2-firmware
  - Freakydude's Build: https://github.com/freakydude/Marlin
