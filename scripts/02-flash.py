@@ -119,13 +119,22 @@ class MarlinFlasher:
             print("[Info] No com port provided, listing available ports")
             self.port_name = self.select_port()
 
+            if self.port_name is None:
+                print("[Error] No com ports available")
+                return False
+
         self.serial_port.port = self.port_name
         print(f"[Info] Opening {self.port_name}")
         self.serial_port.open()
+        return True
 
     def select_port(self):
         comlist = serial.tools.list_ports.comports()
         connected = []
+
+        if len(comlist) == 0:
+            return None
+
         for index, element in enumerate(comlist):
             connected.append("{}. {}".format(index, element.device))
 
@@ -149,7 +158,8 @@ def main():
         mf.inform_how_to_install_dfu_util()
         return
 
-    mf.open_port()
+    if not mf.open_port():
+        return
 
     if not mf.get_printer_settings():
         mf.close_port()
