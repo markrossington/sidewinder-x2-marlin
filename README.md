@@ -46,11 +46,6 @@ I offer no warranty, support or guarantees. Any changes to your 3D printer firmw
 | Host Action Commands         | Off                | On                        | HOST_ACTION_COMMANDS                             | Allow more advanced features of octoprint at negligible cost to performance                              |
 | Cancel Objects               | Off                | On                        | CANCEL_OBJECTS                                   | Useful mid print to continue with other projects if one may have lifted or otherwise failed              |
 
-# Notable omitted features
-
- - **Any UI or Display options** - The Sidewinder X2 has a display with it's own controller which communicates via UART to the Ruby Mainboard. So Marlin doesn't drive this.
- - **Any USB or SD card option** - The display controller also handles the SD card and USB slots so no need to configure here.
-
 # Folder Structure
 
 * configs
@@ -67,9 +62,13 @@ I offer no warranty, support or guarantees. Any changes to your 3D printer firmw
      * Feature wise Klipper used to be king, however the Marlin team are catching up with features such as linear advance and input shaping which are now both available. 
      * You absolutely need an additional computer (usually a Rapsberry Pi) constantly plugged into your printer. Not a problem for most of us who use Octoprint/OctoPi but still worth noting. Using Klipper your printer will not operate without this. 
      * The existing TFT screen will no longer work, there are great projects such as [Klipperscreen](https://klipperscreen.readthedocs.io) which will work with a screen plugged into your Raspberry Pi but this is extra hardware still. 
-  2. Why are the scripts in Python and not X, Y or Z?
+  2. Is this the firmware for the TFT?
+     * No, this is the firmware for the mainboard. If you wish to update the firmware for the TFT then look at [Arillery's Download Page](https://www.artillery3d.com/pages/downloads) or for something new try [BigTreeTech's firmware](https://github.com/bigtreetech/BIGTREETECH-TouchScreenFirmware), though if you have a new style TFT then you might not be able to, see [the following issue](https://github.com/bigtreetech/BIGTREETECH-TouchScreenFirmware/issues/2391).
+  3. Why are the scripts in Python and not X, Y or Z?
       * I wanted this to work on as many platforms as possible. Python allows for this and is often installed on many peoples machines anyway. It's worth noting that building Marlin doesn't work on a Raspberry Pi at this point in time, this is a limitation of the toolchains and nothing I can control.
-  3. Why don't you have this new amazing feature installed?
+  4. Why are no UI or SD card options configured?
+      * The circuit board connected to the TFT display manages the UI and SD card on this printer. Marlin runs on a different board, the mainboard. For TFT related firmware see question 2.
+  5. Why don't you have this new amazing feature installed?
       * I might not know about it, [open an issue](https://github.com/markrossington/sidewinder-x2-marlin/issues/new).
 
 # TODO:
