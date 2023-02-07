@@ -49,8 +49,8 @@ I offer no warranty, support or guarantees. Any changes to your 3D printer firmw
 # Folder Structure
 
 * configs
-  * updated - The configuration to use on a new Sidewinder X2
-  * stock_artillery - For reference only, to see which options are enabled on the stock firmware
+  * `updated` - The configuration to use on a new Sidewinder X2
+  * `stock_artillery` - For reference only, to see which options are enabled on the stock firmware
 * scripts
   * `01-build.py`
   * `02-flash.py`
@@ -70,14 +70,6 @@ I offer no warranty, support or guarantees. Any changes to your 3D printer firmw
       * The circuit board connected to the TFT display manages the UI and SD card on this printer. Marlin runs on a different board, the mainboard. For TFT related firmware see question 2.
   5. Why don't you have this new amazing feature installed?
       * I might not know about it, [open an issue](https://github.com/markrossington/sidewinder-x2-marlin/issues/new).
-
-# TODO:
-
- - [ ] Add a nice way to input which marlin to download and which config to apply (ini file, command line args, command line UI)
- - [x] Combine scripts
- - [ ] Neaten up and document scripts
- - [ ] Add a way to point at a repo of custom config
- - [ ] Make instructions clearer for people who don't understand command line and software
 
 # Sources/Links
 
