@@ -19,10 +19,32 @@ I offer no warranty, support or guarantees. Any changes to your 3D printer firmw
 
 # Lets just do this
 
+## Build on Windows
+
  1. Clone or [download a zip](https://github.com/markrossington/sidewinder-x2-marlin/archive/refs/heads/main.zip) of this repository
- 2. Ensure you have Python 3.x installed. [Download here](https://www.python.org/downloads/).
- 3. Run: `01-build.py` and compiled firmware should be in `output/firmware.bin`
- 4. Ensure `dfu-util` installed, turn printer on and plug a USB cable into it. Run `02-flash.py`.
+ 2. Unzip to a folder, for example: 
+    * Windows: `C:/sidewinder-x2-marlin/` 
+    * Linux/Mac: `~/sidewinder-x2-marlin/`
+ 3. Ensure you have Python 3.x installed. [Download here](https://www.python.org/downloads/).
+ 4. Open a command prompt on Windows or terminal on Linux/Mac
+ 5. Type (Note this is the same folder as in step 2): 
+    * Windows: `cd C:/sidewinder-x2-marlin/` 
+    * Linux/Mac: `cd ~/sidewinder-x2-marlin/` 
+ 6. Type:
+    * Windows `python scripts/01-build.py`
+    * Linux/Mac: `python3 scripts/01-build.py`
+ 7. There will be a lot of text flying past which is a good thing, once it's stopped firmware should be built and available in the `output` folder. Check for `firmware.bin`
+
+## Program onto printer (aka flashing)
+ 1. Ensure `dfu-util` installed:
+    * Windows: Download latest from here <https://dfu-util.sourceforge.net/releases/> and put in the folder you unzipped to
+    * Linux: In a terminal type: `sudo apt install dfu-util`
+    * Mac: In a terminal type: `brew install dfu-util`
+ 2. Turn printer on and plug a USB-B cable between the printer and your computer
+ 3. Open a command prompt on Windows or terminal on Linux/Mac
+ 4. Type:
+    * Windows `python scripts/02-flash.py`
+    * Linux/Mac: `python3 scripts/02-flash.py`
 
 # Comparison of Differences from Stock
 
