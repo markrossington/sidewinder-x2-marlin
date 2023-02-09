@@ -32,14 +32,14 @@ class MarlinFlasher:
             os.remove(file_path)
 
     def run_process(self, process_command):
+        # TODO: have a return which can be checked by caller
         print("[Info] Running {}".format(" ".join(process_command)))
 
-        if not self.dont_run_processes:
-            with subprocess.Popen(process_command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT) as process:
-                for line in process.stdout:
-                    line = line.decode("utf8").strip()
-                    if line != "":
-                        print(line)
+        with subprocess.Popen(process_command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT) as process:
+            for line in process.stdout:
+                line = line.decode("utf8").strip()
+                if line != "":
+                    print(line)
 
     def check_command_exists(self, command):
         print(f"[Info] Checking for {command}")
@@ -78,6 +78,8 @@ class MarlinFlasher:
 
         print(f"[Info] Written settings to {self.printer_settings_filename}")
 
+        return True
+
     def restore_printer_settings(self):
         if not self.serial_port.is_open:
             print("[Error] No serial port open to send printer settings to")
@@ -85,13 +87,15 @@ class MarlinFlasher:
 
         self.serial_port.flush()
 
-        with open("test.gcode", "r") as setting_file:  # self.printer_settings_filename
+        with open(self.printer_settings_filename, "r") as setting_file:
             for line in setting_file.readlines():
                 if not line.startswith(";") and not line.startswith("ok"):
                     print(f'[Info] Sending: "{line.strip()}"')
                     self.serial_port.write(f"{line.strip()}\n".encode("ascii"))
-
-                    if not b"ok" in self.serial_port.read_all():
+                    received = self.serial_port.readlines()
+                    received = b" ".join([line.strip() for line in received])
+                    print(received)
+                    if not b"ok" in received:
                         print(f"[ERROR] OK not received")
                         return False
 
@@ -104,6 +108,7 @@ class MarlinFlasher:
         print(f"Flashing {self.binary_to_flash}")
         self.run_process(
             [
+                "sudo",
                 "dfu-util",
                 "-a",
                 "0",
@@ -113,6 +118,7 @@ class MarlinFlasher:
                 self.binary_to_flash,
             ]
         )
+        return True
 
     def open_port(self):
         if self.port_name is None:
