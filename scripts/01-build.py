@@ -18,8 +18,8 @@ class MarlinBuilder:
     marlin_download_url = f"https://github.com/MarlinFirmware/Marlin/archive/{marlin_version}.zip"
     download_zip_filepath = f"tmp/marlin_{marlin_version}.zip"
     config_paths = [
-        "configs/updated/Configuration.h",
-        "configs/updated/Configuration_adv.h",
+        "config/Configuration.h",
+        "config/Configuration_adv.h",
     ]
     dont_run_processes = False  # TODO: This is only useful for dev, remove
     home = os.path.expanduser("~")
