@@ -1,5 +1,5 @@
 # Marlin for Artillery Sidewinder X2
-![](https://img.shields.io/badge/Artillery%20Version-v2.0.9.1-blue)
+![[Artillery3d Repo](https://github.com/artillery3d/sidewinder-x2-firmware)](https://img.shields.io/badge/Artillery%20Version-v2.0.9.1-blue)
 ![](https://img.shields.io/github/v/release/MarlinFirmware/Marlin?label=%20Marlin%20Version)
 
 The stock firmware on the Artillery Sidewinder X2 is [Marlin](https://github.com/MarlinFirmware/Marlin), however [Artillery's version](https://github.com/artillery3d/sidewinder-x2-firmware) is out of date and missing some useful features.
