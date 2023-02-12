@@ -23,7 +23,7 @@ class MarlinBuilder:
     ]
     dont_run_processes = False  # TODO: This is only useful for dev, remove
     home = os.path.expanduser("~")
-    pio_command = f"{home}/.platformio/penv/bin/pio"
+    pio_command = f"{home}/.platformio/penv/Scripts/pio"
 
     def __init__(self, dont_run_processes):
         self.dont_run_processes = dont_run_processes
