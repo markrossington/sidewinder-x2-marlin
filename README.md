@@ -38,7 +38,7 @@ I offer no warranty, support or guarantees. Any changes to your 3D printer firmw
 ## Program new firmware onto printer (aka flashing)
  1. Ensure firmware has been built as in section above
  2. Ensure `dfu-util` installed:
-    * Windows: Download latest from here <https://dfu-util.sourceforge.net/releases/> and put in the folder you unzipped to
+    * Windows: Download latest from here [<https://dfu-util.sourceforge.net/releases/>](https://dfu-util.sourceforge.net/releases/dfu-util-0.9-win64.zip) and put in the folder you unzipped the files of the repository before in step 2, for example: Windows: `C:/sidewinder-x2-marlin/` Linux/Mac: `~/sidewinder-x2-marlin/`
     * Linux: In a terminal type: `sudo apt install dfu-util`
     * Mac: In a terminal type: `brew install dfu-util`
  3. Turn printer on and plug a USB-B cable between the printer and your computer
