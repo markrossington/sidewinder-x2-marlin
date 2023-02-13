@@ -51,7 +51,14 @@ I offer no warranty, support or guarantees. Any changes to your 3D printer firmw
     * Windows `python scripts/02-flash.py`
     * Linux/Mac: `python3 scripts/02-flash.py`
 
-# Comparison of Differences from Stock
+# New Features vs Stock
+ * [Linear Advance](https://marlinfw.org/docs/features/lin_advance.html)
+ * [Input Shaping](https://marlinfw.org/docs/gcode/M593.html)
+ * Better support for [Octoprint](https://octoprint.org)
+ * [Cancel Objects](https://marlinfw.org/docs/gcode/M486.html)
+ * Other minor improvements..
+
+<details><summary><strong>Click to show full detailed comparison</strong></summary>
 
 | Feature/Difference           | Stock              | This                      | Reference Variable                               | Rationale/Notes                                                                                          |
 | ---------------------------- | ------------------ | ------------------------- | ------------------------------------------------ | -------------------------------------------------------------------------------------------------------- |
@@ -74,6 +81,8 @@ I offer no warranty, support or guarantees. Any changes to your 3D printer firmw
 | Lower Case G-Code            | Off                | On                        | GCODE_CASE_INSENSITIVE                           | Why not                                                                                                  |
 | Host Action Commands         | Off                | On                        | HOST_ACTION_COMMANDS                             | Allow more advanced features of octoprint at negligible cost to performance                              |
 | Cancel Objects               | Off                | On                        | CANCEL_OBJECTS                                   | Useful mid print to continue with other projects if one may have lifted or otherwise failed              |
+</details>
+
 
 # Folder Structure
 
