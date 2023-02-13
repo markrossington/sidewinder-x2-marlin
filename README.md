@@ -36,6 +36,10 @@ I offer no warranty, support or guarantees. Any changes to your 3D printer firmw
  7. There will be a lot of text flying past which is a good thing, once it's stopped firmware should be built and available in the `output` folder. Check for `firmware.bin`
 
 ## Program new firmware onto printer (aka flashing)
+> **Warning**
+> `scripts/02-flash.py` is a work in progress, please don't use yet
+
+
  1. Ensure firmware has been built as in section above
  2. Ensure `dfu-util` installed:
     * Windows: Download latest from [here](https://dfu-util.sourceforge.net/releases/dfu-util-0.9-win64.zip) and unzip to the same folder you unzipped the files of the repository before in step 2, for example:`C:/sidewinder-x2-marlin/`
