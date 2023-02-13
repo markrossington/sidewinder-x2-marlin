@@ -157,6 +157,12 @@ class MarlinFlasher:
 
 
 def main():
+    continue_script = input(
+        "\n** WARNING **\n\nThis script is a work in progress with known bugs, it is very likely to leave your printer in an unknown state \n\nContinue? (y/n):"
+    )
+    if continue_script.lower() != "y":
+        return
+
     mf = MarlinFlasher()
     mf.work_top_level()
 
