@@ -66,6 +66,12 @@ class MarlinBuilder:
                     line = line.decode("utf8").strip()
                     if line != "":
                         print(line)
+                process.communicate()
+                if process.returncode != 0:
+                    print(f'[Error] Process "{process_command}" failed, return code was {process.returncode}')
+                    return False
+                else:
+                    return True
 
     def install_platformio(self):
         self.download_file(self.pio_download_url, self.local_pio_script_path)
@@ -122,7 +128,11 @@ class MarlinBuilder:
 
         print(f"[Info] Building Marlin found in {marlin_dir}")
         os.chdir(marlin_dir)
-        self.run_process([self.pio_command, "run"])
+
+        build_success = self.run_process([self.pio_command, "run"])
+        if not build_success:
+            return False
+
         os.chdir(self.repository_root)
 
         print(f"[Info] Moving compiled firmware into output folder")
