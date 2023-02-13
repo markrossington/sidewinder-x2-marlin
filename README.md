@@ -77,12 +77,10 @@ I offer no warranty, support or guarantees. Any changes to your 3D printer firmw
 
 # Folder Structure
 
-* configs
-  * `updated` - The configuration to use on a new Sidewinder X2
-  * `stock_artillery` - For reference only, to see which options are enabled on the stock firmware
-* scripts
-  * `01-build.py`
-  * `02-flash.py`
+* `configs` - Updated Marlin configuration for Sidewinder X2
+* `scripts`
+  * `01-build.py` - Build Marlin
+  * `02-flash.py` - Flash Marlin to printer
 
 # FAQ
 
