@@ -40,8 +40,9 @@ I offer no warranty, support or guarantees. Any changes to your 3D printer firmw
 
 ## Program new firmware onto printer (aka flashing)
 > **Warning**
-> `scripts/02-flash.py` is a work in progress, please don't use yet
+> `scripts/02-flash.py` is a work in progress, please don't use yet. Follow the manual guide here: [flashing.md](flashing.md)
 
+<details><summary>Expand to see how the script should work</summary>
 
  1. Ensure firmware has been built as in section above
  2. Ensure `dfu-util` installed:
@@ -53,6 +54,7 @@ I offer no warranty, support or guarantees. Any changes to your 3D printer firmw
  5. Type:
     * Windows `python scripts/02-flash.py`
     * Linux/Mac: `python3 scripts/02-flash.py`
+</details>
 
 # New Features vs Stock
  * [Linear Advance](https://marlinfw.org/docs/features/lin_advance.html)
