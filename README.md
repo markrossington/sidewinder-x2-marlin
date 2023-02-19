@@ -59,7 +59,7 @@ I offer no warranty, support or guarantees. Any changes to your 3D printer firmw
 # New Features vs Stock
  * [Linear Advance](https://marlinfw.org/docs/features/lin_advance.html)
  * [Input Shaping](https://marlinfw.org/docs/gcode/M593.html)
- * Better support for [Octoprint](https://octoprint.org)
+ * Better support for [Octoprint](https://octoprint.org) by enabling [`HOST_ACTION_COMMANDS`](https://reprap.org/wiki/G-code#Action_commands)
  * [Cancel Objects](https://marlinfw.org/docs/gcode/M486.html)
  * Other minor improvements..
 
