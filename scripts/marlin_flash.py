@@ -53,7 +53,13 @@ class MarlinFlash:
         return True
 
     def inform_how_to_install_dfu_util(self):
-        print("[Error] Need to install dfu-util. Use brew on mac, apt on linux or grab the exe on Windows")
+        print("[Error] Need to install dfu-util")
+        if sys.platform == "linux2":
+            print("[Error] Use your distribution package manager, e.g. \n\tsudo apt install dfu-util")
+        elif sys.platform == "darwin":
+            print("[Error] Use brew package manager, e.g. \n\tbrew install dfu-util")
+
+        print("[Error] You can find a release and install yourself from here: https://dfu-util.sourceforge.net")
 
     def get_printer_settings(self):
         if not self.serial_port.is_open:
@@ -166,8 +172,9 @@ def main():
     mf = MarlinFlash()
     mf.work_top_level()
 
-    if not mb.check_command_exists(mb.pio_command):
-        mb.install_platformio()
+    if not mf.check_command_exists("dfu-util"):
+        mf.inform_how_to_install_dfu_util()
+        return
 
     if not mf.open_port():
         return
