@@ -9,7 +9,7 @@ import serial
 import serial.tools.list_ports
 
 
-class MarlinFlasher:
+class MarlinFlash:
     repository_root = os.path.dirname(os.path.dirname(os.path.realpath(sys.argv[0])))
     binary_to_flash = "output/firmware.bin"
     home = os.path.expanduser("~")
@@ -163,12 +163,11 @@ def main():
     if continue_script.lower() != "y":
         return
 
-    mf = MarlinFlasher()
+    mf = MarlinFlash()
     mf.work_top_level()
 
-    if not mf.check_command_exists("dfu-util"):
-        mf.inform_how_to_install_dfu_util()
-        return
+    if not mb.check_command_exists(mb.pio_command):
+        mb.install_platformio()
 
     if not mf.open_port():
         return

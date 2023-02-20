@@ -10,7 +10,7 @@ import zipfile
 from distutils.spawn import find_executable
 
 
-class MarlinBuilder:
+class MarlinBuild:
     repository_root = os.path.dirname(os.path.dirname(os.path.realpath(sys.argv[0])))
     marlin_version = "bugfix-2.1.x"
     local_pio_script_path = "tmp/get-platformio.py"
@@ -142,7 +142,7 @@ class MarlinBuilder:
 
 
 def main():
-    mb = MarlinBuilder(dont_run_processes=False)
+    mb = MarlinBuild(dont_run_processes=False)
     mb.work_top_level()
     mb.make_folder_structure()
 
