@@ -34,13 +34,13 @@ I offer no warranty, support or guarantees. Any changes to your 3D printer firmw
     * Windows: `cd C:/sidewinder-x2-marlin/` 
     * Linux/Mac: `cd ~/sidewinder-x2-marlin/` 
  6. Type:
-    * Windows `python scripts/01-build.py`
-    * Linux/Mac: `python3 scripts/01-build.py`
+    * Windows `python scripts/marlin_build.py`
+    * Linux/Mac: `python3 scripts/marlin_build.py`
  7. There will be a lot of text flying past which is a good thing, once it's stopped firmware should be built and available in the `output` folder. Check for `firmware.bin`
 
 ## Program new firmware onto printer (aka flashing)
 > **Warning**
-> `scripts/02-flash.py` is a work in progress, please don't use yet. Follow the manual guide here: [flashing.md](flashing.md)
+> `scripts/marlin_flash.py` is a work in progress, please don't use yet. Follow the manual guide here: [flashing.md](flashing.md)
 
 <details><summary>Expand to see how the script should work</summary>
 
@@ -52,8 +52,8 @@ I offer no warranty, support or guarantees. Any changes to your 3D printer firmw
  3. Turn printer on and plug a USB-B cable between the printer and your computer
  4. Open a command prompt on Windows or terminal on Linux/Mac
  5. Type:
-    * Windows `python scripts/02-flash.py`
-    * Linux/Mac: `python3 scripts/02-flash.py`
+    * Windows `python scripts/marlin_flash.py`
+    * Linux/Mac: `python3 scripts/marlin_flash.py`
 </details>
 
 # New Features vs Stock
@@ -93,8 +93,8 @@ I offer no warranty, support or guarantees. Any changes to your 3D printer firmw
 
 * `configs` - Updated Marlin configuration for Sidewinder X2
 * `scripts`
-  * `01-build.py` - Build Marlin
-  * `02-flash.py` - Flash Marlin to printer
+  * `marlin_build.py` - Build Marlin
+  * `marlin_flash.py` - Flash Marlin to printer
 
 # FAQ
 
