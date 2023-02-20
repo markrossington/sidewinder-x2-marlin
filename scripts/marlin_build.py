@@ -28,7 +28,7 @@ class MarlinBuild:
     else:
         pio_command = f"{home}/.platformio/penv/bin/pio"
 
-    def __init__(self, dont_run_processes):
+    def __init__(self, dont_run_processes=False):
         self.dont_run_processes = dont_run_processes
 
     def work_top_level(self):
@@ -142,7 +142,7 @@ class MarlinBuild:
 
 
 def main():
-    mb = MarlinBuild(dont_run_processes=False)
+    mb = MarlinBuild()
     mb.work_top_level()
     mb.make_folder_structure()
 
