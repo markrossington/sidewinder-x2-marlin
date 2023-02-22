@@ -37,12 +37,8 @@ class MarlinBuild:
             os.makedirs(curr_dir, exist_ok=True)
             print(f"\t{curr_dir}")
 
-    def download_file(self, remote_url, local_path):
-        print(f"[Info] Downloading {remote_url} to {local_path}...")
-        urllib.request.urlretrieve(remote_url, local_path)
-
     def install_platformio(self):
-        self.download_file(self.pio_download_url, self.local_pio_script_path)
+        Common.download_file(self.pio_download_url, self.local_pio_script_path)
         pio_install_success = Common.run_process([sys.executable, self.local_pio_script_path])
 
         if not pio_install_success:
@@ -52,7 +48,7 @@ class MarlinBuild:
         return True
 
     def get_marlin(self):
-        self.download_file(self.marlin_download_url, self.download_zip_filepath)
+        Common.download_file(self.marlin_download_url, self.download_zip_filepath)
         Common.clean_up_folder("build")
 
         print(f"[Info] Extracting {self.download_zip_filepath} to build folder...")
