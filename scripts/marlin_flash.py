@@ -1,6 +1,5 @@
 # Standard Includes
 import os
-import subprocess
 import sys
 import time
 
@@ -10,7 +9,6 @@ import serial.tools.list_ports
 
 # Local Includes
 from common import Common
-from marlin_build import MarlinBuild
 
 
 class MarlinFlash:
