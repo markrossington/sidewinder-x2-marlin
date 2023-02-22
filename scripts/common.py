@@ -56,6 +56,10 @@ class Common:
         return True
 
     @staticmethod
-    def download_file(remote_url, local_path):
+    def download_file(remote_url: str, local_path: str) -> bool:
         print(f"[Info] Downloading {remote_url} to {local_path}...")
         urllib.request.urlretrieve(remote_url, local_path)
+
+        file_downloaded = os.path.isfile(local_path)
+
+        return file_downloaded
