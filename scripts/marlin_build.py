@@ -6,7 +6,6 @@ import subprocess
 import sys
 import urllib.request
 import zipfile
-from distutils.spawn import find_executable
 
 # Local Includes
 from common import Common
@@ -50,17 +49,6 @@ class MarlinBuild:
             return False
 
         Common.clean_up_files([self.local_pio_script_path])
-        return True
-
-    def check_command_exists(self, command):
-        print(f"[Info] Checking for {command}")
-        command_full_path = find_executable(command)
-
-        if command_full_path is None:
-            return False
-
-        print(f"[Info] Found {command_full_path}")
-
         return True
 
     def get_marlin(self):
@@ -120,7 +108,7 @@ def main():
     Common.work_top_level()
     mb.make_folder_structure()
 
-    if not mb.check_command_exists(mb.pio_command):
+    if not Common.check_command_exists(mb.pio_command):
         mb.install_platformio()
 
     mb.get_marlin()

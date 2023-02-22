@@ -3,7 +3,6 @@ import os
 import subprocess
 import sys
 import time
-from distutils.spawn import find_executable
 
 # Library includes
 import serial
@@ -24,17 +23,6 @@ class MarlinFlash:
 
     def __init__(self, port_name=None):
         self.port_name = port_name
-
-    def check_command_exists(self, command):
-        print(f"[Info] Checking for {command}")
-        command_full_path = find_executable(command)
-
-        if command_full_path is None:
-            return False
-
-        print(f"[Info] Found {command_full_path}")
-
-        return True
 
     def inform_how_to_install_dfu_util(self):
         print("[Error] Need to install dfu-util")
@@ -157,10 +145,10 @@ def main():
 
     Common.work_top_level()
 
-    if not mb.check_command_exists(mb.pio_command):
+    if not Common.check_command_exists(mb.pio_command):
         mb.install_platformio()
 
-    if not mf.check_command_exists("dfu-util"):
+    if not Common.check_command_exists("dfu-util"):
         mf.inform_how_to_install_dfu_util()
         return
 
