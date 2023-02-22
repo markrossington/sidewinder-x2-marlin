@@ -1,21 +1,21 @@
 # Standard Includes
-import os
 import sys
-import time
+from time import sleep, strftime
 
 # Library includes
 import serial
 import serial.tools.list_ports
+import settings
 
 # Local Includes
 from common import Common
 
 
 class MarlinFlash:
+    timestr = strftime("%Y%m%d-%H%M%S")
+    printer_settings_filename = f"{settings.printer_backup_folder}/{timestr}-printer-settings.gcode"
     binary_to_flash = "output/firmware.bin"
-    home = os.path.expanduser("~")
-    timestr = time.strftime("%Y%m%d-%H%M%S")
-    printer_settings_filename = f"{timestr}-printer-settings.gcode"
+
     port_name = ""
     serial_port = serial.Serial(baudrate=115200, timeout=1)
 
@@ -80,7 +80,7 @@ class MarlinFlash:
     def flash_new_firmware(self):
         self.serial_port.write(b"M997\n")
         print(f"[Info] Sent M997, waiting for reboot into dfu mode")
-        time.sleep(5)
+        sleep(5)
         print(f"Flashing {self.binary_to_flash}")
         dfu_util_status = Common.run_process(
             [
