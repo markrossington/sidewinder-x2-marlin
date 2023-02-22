@@ -1,17 +1,20 @@
+# Standard Includes
 import os
 import subprocess
 import sys
 import time
-from datetime import datetime
 from distutils.spawn import find_executable
 
-from marlin_build import MarlinBuild
+# Library includes
 import serial
 import serial.tools.list_ports
 
+# Local Includes
+from common import Common
+from marlin_build import MarlinBuild
+
 
 class MarlinFlash:
-    repository_root = os.path.dirname(os.path.dirname(os.path.realpath(sys.argv[0])))
     binary_to_flash = "output/firmware.bin"
     home = os.path.expanduser("~")
     timestr = time.strftime("%Y%m%d-%H%M%S")
@@ -21,10 +24,6 @@ class MarlinFlash:
 
     def __init__(self, port_name=None):
         self.port_name = port_name
-
-    def work_top_level(self):
-        print(f"[Info] Setting working directory to {self.repository_root}")
-        os.chdir(self.repository_root)
 
     def clean_up_files(self, files_to_remove):
         print("[Info] Cleaning up:")
@@ -171,7 +170,8 @@ def main():
         return
     mb = MarlinBuild()
     mf = MarlinFlash()
-    mf.work_top_level()
+
+    Common.work_top_level()
 
     if not mb.check_command_exists(mb.pio_command):
         mb.install_platformio()

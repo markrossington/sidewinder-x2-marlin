@@ -4,14 +4,15 @@ import os
 import shutil
 import subprocess
 import sys
-import time
 import urllib.request
 import zipfile
 from distutils.spawn import find_executable
 
+# Local Includes
+from common import Common
+
 
 class MarlinBuild:
-    repository_root = os.path.dirname(os.path.dirname(os.path.realpath(sys.argv[0])))
     marlin_version = "bugfix-2.1.x"
     local_pio_script_path = "tmp/get-platformio.py"
     pio_download_url = "https://raw.githubusercontent.com/platformio/platformio-core-installer/master/get-platformio.py"
@@ -30,10 +31,6 @@ class MarlinBuild:
 
     def __init__(self, dont_run_processes=False):
         self.dont_run_processes = dont_run_processes
-
-    def work_top_level(self):
-        print(f"[Info] Setting working directory to {self.repository_root}")
-        os.chdir(self.repository_root)
 
     def clean_up_files(self, files_to_remove):
         print("[Info] Cleaning up:")
@@ -133,7 +130,7 @@ class MarlinBuild:
         if not build_success:
             return False
 
-        os.chdir(self.repository_root)
+        Common.work_top_level()
 
         print(f"[Info] Moving compiled firmware into output folder")
         shutil.copy(built_binary_path, "output")
@@ -143,7 +140,7 @@ class MarlinBuild:
 
 def main():
     mb = MarlinBuild()
-    mb.work_top_level()
+    Common.work_top_level()
     mb.make_folder_structure()
 
     if not mb.check_command_exists(mb.pio_command):
