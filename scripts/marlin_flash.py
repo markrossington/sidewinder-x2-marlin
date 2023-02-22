@@ -140,13 +140,13 @@ def main():
     )
     if continue_script.lower() != "y":
         return
-    mb = MarlinBuild()
+
     mf = MarlinFlash()
 
     Common.work_top_level()
 
-    if not Common.check_command_exists(mb.pio_command):
-        mb.install_platformio()
+    if not Common.check_command_exists(Common.pio_command):
+        Common.install_platformio()
 
     if not Common.check_command_exists("dfu-util"):
         mf.inform_how_to_install_dfu_util()

@@ -8,6 +8,15 @@ from typing import List
 
 
 class Common:
+    pio_download_url = "https://raw.githubusercontent.com/platformio/platformio-core-installer/master/get-platformio.py"
+    local_pio_script_path = "tmp/get-platformio.py"
+
+    home = os.path.expanduser("~")
+    if sys.platform == "win32":
+        pio_command = f"{home}/.platformio/penv/Scripts/pio.exe"
+    else:
+        pio_command = f"{home}/.platformio/penv/bin/pio"
+
     @staticmethod
     def work_top_level() -> None:
         repository_root: str = os.path.dirname(os.path.dirname(os.path.realpath(sys.argv[0])))
@@ -63,3 +72,14 @@ class Common:
         file_downloaded = os.path.isfile(local_path)
 
         return file_downloaded
+
+    @staticmethod
+    def install_platformio() -> bool:
+        Common.download_file(Common.pio_download_url, Common.local_pio_script_path)
+        pio_install_success = Common.run_process([sys.executable, Common.local_pio_script_path])
+
+        if not pio_install_success:
+            return False
+
+        Common.clean_up_files([Common.local_pio_script_path])
+        return True
