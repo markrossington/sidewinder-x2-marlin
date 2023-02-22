@@ -32,17 +32,6 @@ class MarlinBuild:
     def __init__(self, dont_run_processes=False):
         self.dont_run_processes = dont_run_processes
 
-    def clean_up_files(self, files_to_remove):
-        print("[Info] Cleaning up:")
-        for file_path in files_to_remove:
-            print(f"\t{file_path}")
-            os.remove(file_path)
-
-    def clean_up_build_directory(self):
-        print("[Info] Cleaning up build directory")
-        shutil.rmtree("build")
-        os.makedirs("build", exist_ok=True)
-
     def make_folder_structure(self):
         directories_to_make = ["tmp", "build", "output"]
         print("[Info] Creating directories:")
@@ -73,7 +62,7 @@ class MarlinBuild:
     def install_platformio(self):
         self.download_file(self.pio_download_url, self.local_pio_script_path)
         self.run_process([sys.executable, self.local_pio_script_path])
-        self.clean_up_files([self.local_pio_script_path])
+        Common.clean_up_files([self.local_pio_script_path])
 
     def check_command_exists(self, command):
         print(f"[Info] Checking for {command}")
@@ -88,13 +77,13 @@ class MarlinBuild:
 
     def get_marlin(self):
         self.download_file(self.marlin_download_url, self.download_zip_filepath)
-        self.clean_up_build_directory()
+        Common.clean_up_folder("build")
 
         print(f"[Info] Extracting {self.download_zip_filepath} to build folder...")
         with zipfile.ZipFile(self.download_zip_filepath, "r") as zip_ref:
             zip_ref.extractall("build")
 
-        self.clean_up_files([self.download_zip_filepath])
+        Common.clean_up_files([self.download_zip_filepath])
 
     def build_marlin(self) -> bool:
         marlin_dirs = glob.glob("build/Marlin-*")

@@ -25,12 +25,6 @@ class MarlinFlash:
     def __init__(self, port_name=None):
         self.port_name = port_name
 
-    def clean_up_files(self, files_to_remove):
-        print("[Info] Cleaning up:")
-        for file_path in files_to_remove:
-            print(f"\t{file_path}")
-            os.remove(file_path)
-
     def run_process(self, process_command):
         # TODO: have a return which can be checked by caller
         print("[Info] Running {}".format(" ".join(process_command)))
