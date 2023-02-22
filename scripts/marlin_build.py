@@ -22,15 +22,14 @@ class MarlinBuild:
         "config/Configuration.h",
         "config/Configuration_adv.h",
     ]
-    dont_run_processes = False  # TODO: This is only useful for dev, remove
     home = os.path.expanduser("~")
     if sys.platform == "win32":
         pio_command = f"{home}/.platformio/penv/Scripts/pio.exe"
     else:
         pio_command = f"{home}/.platformio/penv/bin/pio"
 
-    def __init__(self, dont_run_processes=False):
-        self.dont_run_processes = dont_run_processes
+    def __init__(self):
+        pass
 
     def make_folder_structure(self):
         directories_to_make = ["tmp", "build", "output"]
@@ -43,26 +42,15 @@ class MarlinBuild:
         print(f"[Info] Downloading {remote_url} to {local_path}...")
         urllib.request.urlretrieve(remote_url, local_path)
 
-    def run_process(self, process_command):
-        print("[Info] Running {}".format(" ".join(process_command)))
-
-        if not self.dont_run_processes:
-            with subprocess.Popen(process_command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT) as process:
-                for line in process.stdout:
-                    line = line.decode("utf8").strip()
-                    if line != "":
-                        print(line)
-                process.communicate()
-                if process.returncode != 0:
-                    print(f'[Error] Process "{process_command}" failed, return code was {process.returncode}')
-                    return False
-                else:
-                    return True
-
     def install_platformio(self):
         self.download_file(self.pio_download_url, self.local_pio_script_path)
-        self.run_process([sys.executable, self.local_pio_script_path])
+        pio_install_success = Common.run_process([sys.executable, self.local_pio_script_path])
+
+        if not pio_install_success:
+            return False
+
         Common.clean_up_files([self.local_pio_script_path])
+        return True
 
     def check_command_exists(self, command):
         print(f"[Info] Checking for {command}")
@@ -115,7 +103,7 @@ class MarlinBuild:
         print(f"[Info] Building Marlin found in {marlin_dir}")
         os.chdir(marlin_dir)
 
-        build_success = self.run_process([self.pio_command, "run"])
+        build_success = Common.run_process([self.pio_command, "run"])
         if not build_success:
             return False
 

@@ -25,16 +25,6 @@ class MarlinFlash:
     def __init__(self, port_name=None):
         self.port_name = port_name
 
-    def run_process(self, process_command):
-        # TODO: have a return which can be checked by caller
-        print("[Info] Running {}".format(" ".join(process_command)))
-
-        with subprocess.Popen(process_command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT) as process:
-            for line in process.stdout:
-                line = line.decode("utf8").strip()
-                if line != "":
-                    print(line)
-
     def check_command_exists(self, command):
         print(f"[Info] Checking for {command}")
         command_full_path = find_executable(command)
@@ -106,7 +96,7 @@ class MarlinFlash:
         print(f"[Info] Sent M997, waiting for reboot into dfu mode")
         time.sleep(5)
         print(f"Flashing {self.binary_to_flash}")
-        self.run_process(
+        dfu_util_status = Common.run_process(
             [
                 "sudo",
                 "dfu-util",
@@ -118,7 +108,7 @@ class MarlinFlash:
                 self.binary_to_flash,
             ]
         )
-        return True
+        return dfu_util_status
 
     def open_port(self):
         if self.port_name is None:
