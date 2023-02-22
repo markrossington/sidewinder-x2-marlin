@@ -5,6 +5,7 @@ import time
 from datetime import datetime
 from distutils.spawn import find_executable
 
+from marlin_build import MarlinBuild
 import serial
 import serial.tools.list_ports
 
@@ -168,9 +169,12 @@ def main():
     )
     if continue_script.lower() != "y":
         return
-
+    mb = MarlinBuild()
     mf = MarlinFlash()
     mf.work_top_level()
+
+    if not mb.check_command_exists(mb.pio_command):
+        mb.install_platformio()
 
     if not mf.check_command_exists("dfu-util"):
         mf.inform_how_to_install_dfu_util()
