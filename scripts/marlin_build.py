@@ -5,18 +5,14 @@ import os
 import shutil
 import zipfile
 
+import settings
+
 # Local Includes
 from common import Common
 
 
 class MarlinBuild:
-    marlin_version = "bugfix-2.1.x"
-    marlin_download_url = f"https://github.com/MarlinFirmware/Marlin/archive/{marlin_version}.zip"
-    download_zip_filepath = f"tmp/marlin_{marlin_version}.zip"
-    config_paths = [
-        "config/Configuration.h",
-        "config/Configuration_adv.h",
-    ]
+    default_config_paths = ["config/Configuration.h", "config/Configuration_adv.h"]
 
     def __init__(self):
         pass
@@ -29,14 +25,15 @@ class MarlinBuild:
             print(f"\t{curr_dir}")
 
     def get_marlin(self):
-        Common.download_file(self.marlin_download_url, self.download_zip_filepath)
+        download_zip_filepath: str = f"tmp/marlin_{settings.marlin_version}.zip"
+        Common.download_file(settings.marlin_download_url, download_zip_filepath)
         Common.clean_up_folder("build")
 
-        print(f"[Info] Extracting {self.download_zip_filepath} to build folder...")
-        with zipfile.ZipFile(self.download_zip_filepath, "r") as zip_ref:
+        print(f"[Info] Extracting {download_zip_filepath} to build folder...")
+        with zipfile.ZipFile(download_zip_filepath, "r") as zip_ref:
             zip_ref.extractall("build")
 
-        Common.clean_up_files([self.download_zip_filepath])
+        Common.clean_up_files([download_zip_filepath])
 
     def build_marlin(self) -> bool:
         marlin_dirs = glob.glob("build/Marlin-*")
@@ -53,7 +50,7 @@ class MarlinBuild:
         config_destination_path = os.path.join(marlin_dir, "Marlin")
         built_binary_path = os.path.join(marlin_dir, ".pio/build/Artillery_Ruby/firmware.bin")
 
-        for config_file in self.config_paths:
+        for config_file in self.default_config_paths:
             print(f"[Info] Copying {config_file} to {config_destination_path}")
             shutil.copy(config_file, os.path.join(marlin_dir, "Marlin"))
 
