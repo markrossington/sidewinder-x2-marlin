@@ -93,8 +93,10 @@ I offer no warranty, support or guarantees. Any changes to your 3D printer firmw
 
 * `configs` - Updated Marlin configuration for Sidewinder X2
 * `scripts`
+  * `settings.py` - Edit this file to change settings such as which version of marlin you want, which config to use etc.
   * `marlin_build.py` - Build Marlin
   * `marlin_flash.py` - Flash Marlin to printer
+  * `common.py` - Common functions used by both scripts. Save me writing them twice. You shouldn't need to edit or use this file.
 
 # FAQ
 
