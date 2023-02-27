@@ -5,9 +5,8 @@ import os
 import shutil
 import zipfile
 
-import settings
-
 # Local Includes
+import settings
 from common import Common
 
 

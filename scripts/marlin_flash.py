@@ -5,9 +5,9 @@ from time import sleep, strftime
 # Library includes
 import serial
 import serial.tools.list_ports
-import settings
 
 # Local Includes
+import settings
 from common import Common
 
 
