@@ -2,7 +2,7 @@
 pio_download_url = "https://raw.githubusercontent.com/platformio/platformio-core-installer/master/get-platformio.py"
 
 ### Building
-marlin_version = "bugfix-2.1.x"
+marlin_version = "80f0d4ed7c7e6487ffcc9a2f4b8ea32f78192446" # latest commit tested on bugfix-2.1.x
 marlin_download_url = f"https://github.com/MarlinFirmware/Marlin/archive/{marlin_version}.zip"
 
 # Can be a URL of github repo with your "Configuration.h" and "Configuration_adv.h" files
