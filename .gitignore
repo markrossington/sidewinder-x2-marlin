@@ -3,3 +3,4 @@ tmp/
 output/
 .vscode/
 **/.DS_Store
+__pycache__
