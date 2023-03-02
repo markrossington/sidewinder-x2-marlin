@@ -3,6 +3,7 @@ import configparser
 import glob
 import os
 import shutil
+import sys
 import zipfile
 
 # Local Includes
@@ -12,9 +13,25 @@ from common import Common
 
 class MarlinBuild:
     default_config_paths = ["config/Configuration.h", "config/Configuration_adv.h"]
+    config_paths = ["", ""]
 
     def __init__(self):
-        pass
+
+        Common.clean_up_folder("tmp/custom_config")
+
+        if settings.use_custom_config == False or settings.marlin_configuration_h == "" or settings.marlin_configuration_adv_h == "":
+            self.config_paths = self.default_config_paths
+        else:
+            os.makedirs("tmp/custom_config", exist_ok=True)
+            self.config_paths = ["tmp/custom_config/Configuration.h", "tmp/custom_config/Configuration_adv.h"]
+
+            Common.download_file(settings.marlin_configuration_h , self.config_paths[0])
+            Common.download_file(settings.marlin_configuration_adv_h, self.config_paths[1])
+
+            for file_check in self.config_paths:
+                if not os.path.isfile(file_check):
+                    print(f"[Error] Cannot find {file_check}")
+                    sys.exit()
 
     def make_folder_structure(self):
         directories_to_make = ["tmp", "build", "output"]
@@ -49,7 +66,7 @@ class MarlinBuild:
         config_destination_path = os.path.join(marlin_dir, "Marlin")
         built_binary_path = os.path.join(marlin_dir, ".pio/build/Artillery_Ruby/firmware.bin")
 
-        for config_file in self.default_config_paths:
+        for config_file in self.config_paths:
             print(f"[Info] Copying {config_file} to {config_destination_path}")
             shutil.copy(config_file, os.path.join(marlin_dir, "Marlin"))
 
