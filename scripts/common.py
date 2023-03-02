@@ -37,8 +37,8 @@ class Common:
     @staticmethod
     def clean_up_folder(folder_to_remove: str) -> None:
         print(f"[Info] Cleaning up {folder_to_remove} directory")
-        shutil.rmtree(folder_to_remove)
-        os.makedirs(folder_to_remove, exist_ok=True)
+        if os.path.isdir(folder_to_remove):
+            shutil.rmtree(folder_to_remove)
 
     @staticmethod
     def run_process(process_command: str) -> bool:
