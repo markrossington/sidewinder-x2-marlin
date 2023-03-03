@@ -62,6 +62,7 @@ class Common:
         command_full_path = find_executable(command)
 
         if command_full_path is None:
+            print(f"[Info] {command} not found")
             return False
 
         print(f"[Info] Found {command_full_path}")
