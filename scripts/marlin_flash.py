@@ -15,6 +15,16 @@ class MarlinFlash:
     timestr = strftime("%Y%m%d-%H%M%S")
     printer_settings_filename = f"{settings.printer_backup_folder}/{timestr}-printer-settings.gcode"
     binary_to_flash = "output/firmware.bin"
+    install_pio_dfu_command = [Common.pio_command, "pkg", "install", "-g", "--tool", "platformio/tool-dfuutil@^1.11.0"]
+
+    # dfuutil requires sudo on linux and mac
+    if not sys.platform == "win32":
+        sudo_or_not = "sudo"
+
+    run_pio_dfu_command = [sudo_or_not] + [Common.pio_command, "pkg", "exec", "--package", "platformio/tool-dfuutil", "--", "dfu-util"]
+    run_sys_dfu_command = [sudo_or_not] + ["dfu_util"]
+
+    run_dfu_command = run_sys_dfu_command
 
     port_name = ""
     serial_port = serial.Serial(baudrate=115200, timeout=1)
@@ -22,14 +32,16 @@ class MarlinFlash:
     def __init__(self, port_name=None):
         self.port_name = port_name
 
-    def inform_how_to_install_dfu_util(self):
-        print("[Error] Need to install dfu-util")
-        if sys.platform == "linux2":
-            print("[Error] Use your distribution package manager, e.g. \n\tsudo apt install dfu-util")
-        elif sys.platform == "darwin":
-            print("[Error] Use brew package manager, e.g. \n\tbrew install dfu-util")
+    def install_pio_dfu_util(self):
+        print("[Info] Need to install dfu-util")
 
-        print("[Error] You can find a release and install yourself from here: https://dfu-util.sourceforge.net")
+        dfu_util_install_status = Common.run_process(self.install_pio_dfu_command)
+
+        # Use platformio command for dfu-util
+        if dfu_util_install_status:
+            self.run_dfu_command = self.run_pio_dfu_command
+
+        return dfu_util_install_status
 
     def get_printer_settings(self):
         if not self.serial_port.is_open:
@@ -61,15 +73,19 @@ class MarlinFlash:
             print("[Error] No serial port open to send printer settings to")
             return False
 
-        self.serial_port.flush()
-
         with open(self.printer_settings_filename, "r") as setting_file:
             for line in setting_file.readlines():
-                if not line.startswith(";") and not line.startswith("ok"):
+                if (
+                    not line.startswith(";")
+                    and not line.startswith("ok")
+                    and not line.startswith("M149")
+                    and not line.startswith("G29")
+                    and not line.startswith("M420")
+                    and not line.startswith("M206")
+                ):
                     print(f'[Info] Sending: "{line.strip()}"')
-                    self.serial_port.write(f"{line.strip()}\n".encode("ascii"))
-                    received = self.serial_port.readlines()
-                    received = b" ".join([line.strip() for line in received])
+                    self.serial_port.write(bytes(f"{line.strip()}\n".encode("ascii")))
+                    received = self.serial_port.readline()
                     print(received)
                     if not b"ok" in received:
                         print(f"[ERROR] OK not received")
@@ -83,9 +99,8 @@ class MarlinFlash:
         sleep(5)
         print(f"Flashing {self.binary_to_flash}")
         dfu_util_status = Common.run_process(
-            [
-                "sudo",
-                "dfu-util",
+            self.run_dfu_command
+            + [
                 "-a",
                 "0",
                 "-s",
@@ -143,12 +158,17 @@ def main():
 
     Common.work_top_level()
 
-    if not Common.check_command_exists(Common.pio_command):
-        Common.install_platformio()
+    pio_command = Common.find_pio_command()
+    if pio_command == "":
+        if Common.install_platformio():
+            pio_command = Common.pio_command
+        else:
+            return
 
     if not Common.check_command_exists("dfu-util"):
-        mf.inform_how_to_install_dfu_util()
-        return
+        # Use pio dfu-util if no system version
+        if not mf.install_pio_dfu_util():
+            return
 
     if not mf.open_port():
         return
