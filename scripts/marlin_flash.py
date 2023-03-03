@@ -154,6 +154,8 @@ def main():
 
     Common.work_top_level()
 
+    if settings.pio_path_override != "":
+        Common.pio_command = settings.pio_path_override
     if Common.check_command_exists("pio"):
         Common.pio_command = "pio"
     else:
