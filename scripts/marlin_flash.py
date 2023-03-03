@@ -154,8 +154,12 @@ def main():
 
     Common.work_top_level()
 
-    if not Common.check_command_exists(Common.pio_command):
-        Common.install_platformio()
+    if Common.check_command_exists("pio"):
+        Common.pio_command = "pio"
+    else:
+        if not Common.check_command_exists(Common.pio_command):
+            Common.install_platformio()
+
 
     if not Common.check_command_exists("dfu-util"):
         if not mf.install_pio_dfu_util():
