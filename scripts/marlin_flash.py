@@ -16,14 +16,14 @@ class MarlinFlash:
     printer_settings_filename = f"{settings.printer_backup_folder}/{timestr}-printer-settings.gcode"
     binary_to_flash = "output/firmware.bin"
     install_pio_dfu_command = [Common.pio_command, "pkg", "install", "-g", "--tool", "platformio/tool-dfuutil@^1.11.0"]
-    
+
     # dfuutil requires sudo on linux and mac
     if not sys.platform == "win32":
         sudo_or_not = "sudo"
 
     run_pio_dfu_command = [sudo_or_not] + [Common.pio_command, "pkg", "exec", "--package", "platformio/tool-dfuutil", "--", "dfu-util"]
     run_sys_dfu_command = [sudo_or_not] + ["dfu_util"]
-    
+
     run_dfu_command = run_sys_dfu_command
 
     port_name = ""
@@ -73,15 +73,19 @@ class MarlinFlash:
             print("[Error] No serial port open to send printer settings to")
             return False
 
-        self.serial_port.flush()
-
         with open(self.printer_settings_filename, "r") as setting_file:
             for line in setting_file.readlines():
-                if not line.startswith(";") and not line.startswith("ok"):
+                if (
+                    not line.startswith(";")
+                    and not line.startswith("ok")
+                    and not line.startswith("M149")
+                    and not line.startswith("G29")
+                    and not line.startswith("M420")
+                    and not line.startswith("M206")
+                ):
                     print(f'[Info] Sending: "{line.strip()}"')
-                    self.serial_port.write(f"{line.strip()}\n".encode("ascii"))
-                    received = self.serial_port.readlines()
-                    received = b" ".join([line.strip() for line in received])
+                    self.serial_port.write(bytes(f"{line.strip()}\n".encode("ascii")))
+                    received = self.serial_port.readline()
                     print(received)
                     if not b"ok" in received:
                         print(f"[ERROR] OK not received")
