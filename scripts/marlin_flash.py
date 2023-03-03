@@ -154,16 +154,15 @@ def main():
 
     Common.work_top_level()
 
-    if settings.pio_path_override != "":
-        Common.pio_command = settings.pio_path_override
-    if Common.check_command_exists("pio"):
-        Common.pio_command = "pio"
-    else:
-        if not Common.check_command_exists(Common.pio_command):
-            Common.install_platformio()
-
+    pio_command = Common.find_pio_command()
+    if pio_command == "":
+        if Common.install_platformio():
+            pio_command = Common.pio_command
+        else:
+            return
 
     if not Common.check_command_exists("dfu-util"):
+        # Use pio dfu-util if no system version
         if not mf.install_pio_dfu_util():
             return
 
