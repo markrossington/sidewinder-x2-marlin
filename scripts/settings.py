@@ -1,7 +1,7 @@
-### PlatformIO Settings
+# ==== PlatformIO Settings ====
 pio_download_url = "https://raw.githubusercontent.com/platformio/platformio-core-installer/master/get-platformio.py"
 
-### Building Marlin
+# ==== Building Marlin ====
 marlin_version = "80f0d4ed7c7e6487ffcc9a2f4b8ea32f78192446"  # latest commit tested on bugfix-2.1.x
 marlin_download_url = f"https://github.com/MarlinFirmware/Marlin/archive/{marlin_version}.zip"
 
@@ -18,7 +18,7 @@ marlin_configuration_h = "https://github.com/MarlinFirmware/Configurations/raw/b
 marlin_configuration_adv_h = "https://github.com/MarlinFirmware/Configurations/raw/bugfix-2.1.x/config/examples/Artillery/Sidewinder%20X2/Configuration_adv.h"
 
 
-### Flashing
+# ==== Flashing ====
 
 dfu_util_path = ""  # Leave blank to use platformio's version
 printer_backup_folder = "eeprom_settings"
