@@ -96,6 +96,7 @@ class MarlinFlash:
     def flash_new_firmware(self):
         self.serial_port.write(b"M997\n")
         print(f"[Info] Sent M997, waiting for reboot into dfu mode")
+        self.close_port()
         sleep(5)
         print(f"Flashing {self.binary_to_flash}")
         dfu_util_status = Common.run_process(
@@ -109,6 +110,10 @@ class MarlinFlash:
                 self.binary_to_flash,
             ]
         )
+
+        print(f"[Info] Flashed, waiting for reboot back into serial mode")
+        sleep(5)
+
         return dfu_util_status
 
     def open_port(self):
@@ -179,6 +184,9 @@ def main():
 
     if not mf.flash_new_firmware():
         mf.close_port()
+        return
+
+    if not mf.open_port():
         return
 
     if not mf.restore_printer_settings():
