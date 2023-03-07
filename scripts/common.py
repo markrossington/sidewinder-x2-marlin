@@ -14,18 +14,18 @@ import settings
 
 
 class Common:
-    local_pio_script_path = "tmp/get-platformio.py"
-    home = expanduser("~")
+    repository_root: str = os.path.dirname(os.path.dirname(os.path.realpath(sys.argv[0])))
+    local_pio_script_path: str = "tmp/get-platformio.py"
+    home: str = expanduser("~")
     if platform == "win32":
-        pio_command = f"{home}/.platformio/penv/Scripts/pio.exe"
+        pio_command: str = f"{home}/.platformio/penv/Scripts/pio.exe"
     else:
-        pio_command = f"{home}/.platformio/penv/bin/pio"
+        pio_command: str = f"{home}/.platformio/penv/bin/pio"
 
     @staticmethod
     def work_top_level() -> None:
-        repository_root: str = os.path.dirname(os.path.dirname(os.path.realpath(sys.argv[0])))
-        print(f"[Info] Setting working directory to {repository_root}")
-        os.chdir(repository_root)
+        print(f"[Info] Setting working directory to {Common.repository_root}")
+        os.chdir(Common.repository_root)
 
     @staticmethod
     def clean_up_files(files_to_remove: List[str]) -> None:
