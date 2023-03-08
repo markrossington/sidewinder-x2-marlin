@@ -1,4 +1,5 @@
 # Standard Includes
+import os
 import sys
 from time import sleep, strftime
 
@@ -162,6 +163,7 @@ def main():
     mf = MarlinFlash()
 
     Common.work_top_level()
+    os.makedirs(settings.printer_backup_folder, exist_ok=True)
 
     pio_command = Common.find_pio_command()
     if pio_command == "":
