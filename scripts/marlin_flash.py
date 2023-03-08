@@ -99,7 +99,7 @@ class MarlinFlash:
         print(f"[Info] Sent M997, waiting for reboot into dfu mode")
         self.close_port()
         sleep(5)
-        print(f"Flashing {self.binary_to_flash}")
+        print(f"[Info] Flashing {self.binary_to_flash}")
         dfu_util_status = Common.run_process(
             self.run_dfu_command
             + [
