@@ -113,8 +113,9 @@ class MarlinFlash:
             "dfu-util"
         )
 
-        print(f"[Info] Flashed, waiting for reboot back into serial mode")
-        sleep(5)
+        if dfu_util_status:
+            print(f"[Info] Flashed, waiting for reboot back into serial mode")
+            sleep(5)
 
         return dfu_util_status
 
