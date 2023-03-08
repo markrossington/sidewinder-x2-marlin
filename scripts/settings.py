@@ -17,6 +17,8 @@ marlin_configuration_h = "https://github.com/MarlinFirmware/Configurations/raw/b
 # URL of Configuration_adv.h file, only used it use_custom_config is True. This is the Marlin projects example.
 marlin_configuration_adv_h = "https://github.com/MarlinFirmware/Configurations/raw/bugfix-2.1.x/config/examples/Artillery/Sidewinder%20X2/Configuration_adv.h"
 
+# If the configurations live in a private github repo, add your PAT here
+personal_access_token = "" # Leave blank for public repos
 
 # ==== Flashing ====
 

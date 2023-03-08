@@ -16,7 +16,6 @@ class MarlinBuild:
     config_paths = ["", ""]
 
     def __init__(self):
-
         Common.clean_up_folder("tmp/custom_config")
 
         if settings.use_custom_config == False or settings.marlin_configuration_h == "" or settings.marlin_configuration_adv_h == "":
@@ -25,8 +24,8 @@ class MarlinBuild:
             os.makedirs("tmp/custom_config", exist_ok=True)
             self.config_paths = ["tmp/custom_config/Configuration.h", "tmp/custom_config/Configuration_adv.h"]
 
-            Common.download_file(settings.marlin_configuration_h , self.config_paths[0])
-            Common.download_file(settings.marlin_configuration_adv_h, self.config_paths[1])
+            Common.download_file(settings.marlin_configuration_h, self.config_paths[0], settings.personal_access_token)
+            Common.download_file(settings.marlin_configuration_adv_h, self.config_paths[1], settings.personal_access_token)
 
             for file_check in self.config_paths:
                 if not os.path.isfile(file_check):

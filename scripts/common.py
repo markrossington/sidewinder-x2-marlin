@@ -70,8 +70,14 @@ class Common:
         return True
 
     @staticmethod
-    def download_file(remote_url: str, local_path: str) -> bool:
+    def download_file(remote_url: str, local_path: str, personal_access_token: str = "") -> bool:
         print(f"[Info] Downloading {remote_url} to {local_path}...")
+
+        if not personal_access_token == "":
+            pat_opener = urllib.request.build_opener()
+            pat_opener.addheaders = [("Authorization", f"token {personal_access_token}")]
+            urllib.request.install_opener(pat_opener)
+
         urllib.request.urlretrieve(remote_url, local_path)
 
         file_downloaded = os.path.isfile(local_path)
@@ -85,7 +91,7 @@ class Common:
         if settings.pio_path_override != "":
             path_to_use = settings.pio_path_override
         if Common.check_command_exists("pio"):
-            path_to_use ="pio"
+            path_to_use = "pio"
         if Common.check_command_exists(Common.pio_command):
             path_to_use = Common.pio_command
         else:
