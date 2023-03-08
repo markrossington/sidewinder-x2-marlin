@@ -107,10 +107,11 @@ class MarlinFlash:
                 "0",
                 "-s",
                 "0x8000000:leave",
+                "--reset",
                 "-D",
                 self.binary_to_flash,
             ],
-            "dfu-util"
+            "dfu-util",
         )
 
         if dfu_util_status:
