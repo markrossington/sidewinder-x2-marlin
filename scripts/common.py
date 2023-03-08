@@ -41,14 +41,14 @@ class Common:
             shutil.rmtree(folder_to_remove)
 
     @staticmethod
-    def run_process(process_command: str) -> bool:
+    def run_process(process_command: str, log_tag: str = "Proc") -> bool:
         print("[Info] Running {}".format(" ".join(process_command)))
 
         with subprocess.Popen(process_command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT) as process:
             for line in process.stdout:
                 line = line.decode("utf8").strip()
                 if line != "":
-                    print(line)
+                    print(f"\t[{log_tag}] {line}")
             process.communicate()
             if process.returncode != 0:
                 print(f'[Error] Process "{process_command}" failed, return code was {process.returncode}')

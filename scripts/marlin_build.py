@@ -80,7 +80,7 @@ class MarlinBuild:
         print(f"[Info] Building Marlin found in {marlin_dir}")
         os.chdir(marlin_dir)
 
-        build_success = Common.run_process([Common.pio_command, "run"])
+        build_success = Common.run_process([Common.pio_command, "run"], "pio")
         if not build_success:
             return False
 

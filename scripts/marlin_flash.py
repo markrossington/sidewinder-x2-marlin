@@ -36,7 +36,7 @@ class MarlinFlash:
     def install_pio_dfu_util(self):
         print("[Info] Need to install dfu-util")
 
-        dfu_util_install_status = Common.run_process(self.install_pio_dfu_command)
+        dfu_util_install_status = Common.run_process(self.install_pio_dfu_command, "pio")
 
         # Use platformio command for dfu-util
         if dfu_util_install_status:
@@ -109,7 +109,8 @@ class MarlinFlash:
                 "0x8000000:leave",
                 "-D",
                 self.binary_to_flash,
-            ]
+            ],
+            "dfu-util"
         )
 
         print(f"[Info] Flashed, waiting for reboot back into serial mode")
