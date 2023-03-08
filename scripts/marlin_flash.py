@@ -23,7 +23,7 @@ class MarlinFlash:
         sudo_or_not = "sudo"
 
     run_pio_dfu_command = [sudo_or_not] + [Common.pio_command, "pkg", "exec", "--package", "platformio/tool-dfuutil", "--", "dfu-util"]
-    run_sys_dfu_command = [sudo_or_not] + ["dfu_util"]
+    run_sys_dfu_command = [sudo_or_not] + ["dfu-util"]
 
     run_dfu_command = run_sys_dfu_command
 
