@@ -30,5 +30,8 @@ def main():
         print("[Error] scripts directory not found")
         return
 
+    subprocess.run(["ssh", settings.remote_address, "-t", f"python3 {settings.remote_folder}/scripts/marlin_flash.py"])
+
+
 if __name__ == "__main__":
     main()
