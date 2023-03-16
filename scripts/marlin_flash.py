@@ -95,6 +95,8 @@ class MarlinFlash:
 
         print(f"[Info] Written settings from {self.printer_settings_filename}")
 
+        print('[Info] Saving to EEPROM with: "M500"')
+        self.serial_port.write(b"M500\n")
 
     def wait_for_dfu_mode(self):
         start_time = datetime.now()
