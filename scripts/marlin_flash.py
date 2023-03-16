@@ -2,6 +2,7 @@
 import os
 import sys
 from time import sleep, strftime
+from datetime import datetime
 
 # Library includes
 import serial
@@ -94,11 +95,35 @@ class MarlinFlash:
 
         print(f"[Info] Written settings from {self.printer_settings_filename}")
 
+
+    def wait_for_dfu_mode(self):
+        start_time = datetime.now()
+
+        while Common.run_process("sudo dfu-util -a 0 -d 0483:df11 -U out.bin -Z 4".split(" ")) == False:
+            
+            # clean up temporary file made, dfu-util doesn't like overwriting
+            if os.path.isfile("out.bin"): os.remove("out.bin")
+            sleep(0.5)
+
+            time_delta = datetime.now() - start_time
+            if time_delta.total_seconds() >= 10:
+                print("[Error] Timed out (10s) waiting for printer to enter DFU Mode")
+                return False
+        
+        # clean up temporary file made, dfu-util doesn't like overwriting
+        if os.path.isfile("out.bin"): os.remove("out.bin")
+        print("[Info] Found printer in DFU mode")
+        
+        return True
+
     def flash_new_firmware(self):
         self.serial_port.write(b"M997\n")
         print(f"[Info] Sent M997, waiting for reboot into dfu mode")
         self.close_port()
-        sleep(5)
+        
+        if not self.wait_for_dfu_mode():
+            return
+
         print(f"[Info] Flashing {self.binary_to_flash}")
         dfu_util_status = Common.run_process(
             self.run_dfu_command
