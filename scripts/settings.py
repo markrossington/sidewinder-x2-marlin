@@ -5,6 +5,10 @@ pio_download_url = "https://raw.githubusercontent.com/platformio/platformio-core
 marlin_version = "80f0d4ed7c7e6487ffcc9a2f4b8ea32f78192446"  # latest commit tested on bugfix-2.1.x
 marlin_download_url = f"https://github.com/MarlinFirmware/Marlin/archive/{marlin_version}.zip"
 
+# This is the PlatformIO target (i.e. which board to build for)
+# Artillery_Ruby is the name of the Artillery 3D 32bit printer mainboard
+# This is good for: Artillery X1, X2, Genius, Genius Pro and Hornet printers
+platformio_target = "Artillery_Ruby"
 
 # Set to True if you want to use Configuration files from somewhere else, 
 # you will need to specify marlin_configuration_h and marlin_configuration_adv_h below

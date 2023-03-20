@@ -63,7 +63,7 @@ class MarlinBuild:
             marlin_dir = marlin_dirs[0]
 
         config_destination_path = os.path.join(marlin_dir, "Marlin")
-        built_binary_path = os.path.join(marlin_dir, ".pio/build/Artillery_Ruby/firmware.bin")
+        built_binary_path = os.path.join(marlin_dir, f".pio/build/{settings.platformio_target}/firmware.bin")
 
         for config_file in self.config_paths:
             print(f"[Info] Copying {config_file} to {config_destination_path}")
@@ -73,7 +73,7 @@ class MarlinBuild:
         print(f"[Info] Making {pio_ino_path} file build for Ruby board")
         config = configparser.ConfigParser()
         config.read(pio_ino_path)
-        config.set(r"platformio", r"default_envs", r"Artillery_Ruby")
+        config.set(r"platformio", r"default_envs", settings.platformio_target)
         with open(pio_ino_path, "w") as configfile:
             config.write(configfile)
 
