@@ -1,5 +1,6 @@
 # ==== PlatformIO Settings ====
 pio_download_url = "https://raw.githubusercontent.com/platformio/platformio-core-installer/master/get-platformio.py"
+local_pio_script_path = "tmp/get-platformio.py"
 
 # ==== Building Marlin ====
 marlin_version = "80f0d4ed7c7e6487ffcc9a2f4b8ea32f78192446"  # latest commit tested on bugfix-2.1.x
