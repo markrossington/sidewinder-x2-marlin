@@ -3,7 +3,7 @@ pio_download_url = "https://raw.githubusercontent.com/platformio/platformio-core
 local_pio_script_path = "tmp/get-platformio.py"
 
 # ==== Building Marlin ====
-marlin_version = "80f0d4ed7c7e6487ffcc9a2f4b8ea32f78192446"  # latest commit tested on bugfix-2.1.x
+marlin_version = "810c1693aca079c6ecdb1584292c65b384ca1f5f"  # latest commit tested on bugfix-2.1.x
 marlin_download_url = f"https://github.com/MarlinFirmware/Marlin/archive/{marlin_version}.zip"
 
 # This is the PlatformIO target (i.e. which board to build for)
