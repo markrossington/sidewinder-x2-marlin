@@ -2,7 +2,7 @@
 
 There are multiple reasons you may want to do this manually: it could be to learn or because the automatic method doesn't work for you.
 
-Here is artillery's guide: <https://bit.ly/3BLAcBn>. The following is mine.
+Here is artillery's guide: <https://bit.ly/3BLAcBn> and here's Freakydude's guide: <https://blog.freakydu.de/posts/2022-09-30-flash_marlin_sidewinderx2/> The following is mine.
 
 # Put into reprogram mode
 The first step is to put your printer into a mode where it can be downloaded to. This is also called DFU (Device Firmware Update) mode.
