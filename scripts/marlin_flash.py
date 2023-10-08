@@ -22,6 +22,8 @@ class MarlinFlash:
     # dfuutil requires sudo on linux and mac
     if not sys.platform == "win32":
         sudo_or_not = "sudo"
+    else:
+        sudo_or_not = ""
 
     run_pio_dfu_command = [sudo_or_not] + [Common.pio_command, "pkg", "exec", "--package", "platformio/tool-dfuutil", "--", "dfu-util"]
     run_sys_dfu_command = [sudo_or_not] + ["dfu-util"]
