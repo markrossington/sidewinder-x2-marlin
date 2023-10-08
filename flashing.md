@@ -14,9 +14,10 @@ If your printer runs Marlin you can put the printer into reprogram mode by sendi
  2. Open the terminal tool
  3. Connect [USB-B to USB-A cable](https://www.amazon.com/AmazonBasics-USB-2-0-Cable-Male/dp/B00NH11KIK/) between your PC and your computer and turn the printer on
  4. A new serial port should appear to connect to in your serial terminal. e.g. `COM5`
- 5. Connect to this with a baud rate of `115200`
- 6. Type `M997` and press send
- 7. If you see the serial port disconnect and the printer lights go off then it has rebooted in reprogram mode.
+    - If it doesn't show up, install serial port drivers. While it's a much bigger install than required: [Stm32cube](https://www.st.com/en/development-tools/stm32cubeprog.html) will have these (name not needed, just email). Or you can try to install [FTDI Drivers](https://ftdichip.com/drivers/)
+ 6. Connect to this with a baud rate of `115200`
+ 7. Type `M997` and press send
+ 8. If you see the serial port disconnect and the printer lights go off then it has rebooted in reprogram mode.
 
 If this fails then see the next section.
 
@@ -36,7 +37,7 @@ I will repeat what's written here: <https://3dprintbeginner.com/how-to-install-k
 
  1. Get the `firmware.bin` you want to download to your printer
  2. Ensure `dfu-util` installed:
-    * Windows: Download latest from [here](https://dfu-util.sourceforge.net/releases/dfu-util-0.9-win64.zip) and also install drivers from [ST](https://www.st.com/en/development-tools/stm32cubeprog.html) (name not needed, just email) if no USB device is found in 4).
+    * Windows: Download latest from [here](https://dfu-util.sourceforge.net/releases/dfu-util-0.9-win64.zip)
     * Linux: In a terminal type: `sudo apt install dfu-util`
     * Mac: In a terminal type: `brew install dfu-util`
  3. Open a command prompt in the directory of your `firmware.bin`
