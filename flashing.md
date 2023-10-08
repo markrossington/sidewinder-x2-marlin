@@ -36,7 +36,7 @@ I will repeat what's written here: <https://3dprintbeginner.com/how-to-install-k
 
  1. Get the `firmware.bin` you want to download to your printer
  2. Ensure `dfu-util` installed:
-    * Windows: Download latest from [here](https://dfu-util.sourceforge.net/releases/dfu-util-0.9-win64.zip) 
+    * Windows: Download latest from [here](https://dfu-util.sourceforge.net/releases/dfu-util-0.9-win64.zip) and also install drivers from [ST](https://www.st.com/en/development-tools/stm32cubeprog.html) (name not needed, just email) if no USB device is found in 4).
     * Linux: In a terminal type: `sudo apt install dfu-util`
     * Mac: In a terminal type: `brew install dfu-util`
  3. Open a command prompt in the directory of your `firmware.bin`
