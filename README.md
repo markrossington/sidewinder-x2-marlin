@@ -41,7 +41,6 @@ I offer no warranty, support or guarantees. Any changes to your 3D printer firmw
 ## Program new firmware onto printer (aka flashing)
 > **Warning**
 > `scripts/marlin_flash.py` is a work in progress, please don't use yet. Follow the manual guide here: [flashing.md](/flashing.md)
-> 
 
 <details><summary>Expand to see how the script should work</summary>
 
