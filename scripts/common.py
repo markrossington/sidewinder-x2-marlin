@@ -4,7 +4,6 @@ import shutil
 import subprocess
 import sys
 import urllib.request
-from distutils.spawn import find_executable
 from os.path import expanduser
 from sys import platform
 from typing import List
@@ -59,7 +58,7 @@ class Common:
     @staticmethod
     def check_command_exists(command: str) -> bool:
         print(f"[Info] Checking for {command}")
-        command_full_path = find_executable(command)
+        command_full_path = shutil.which(command)
 
         if command_full_path is None:
             print(f"[Info] {command} not found")
